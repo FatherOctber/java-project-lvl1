@@ -25,7 +25,7 @@ public final class CaclGame extends Game {
     }
 
     @Override
-    protected boolean round() {
+    protected Result round() {
         var a = getRandomNumber();
         var b = getRandomNumber();
         var op = getRandomOperator();
@@ -36,15 +36,13 @@ public final class CaclGame extends Game {
             var expectedNum = Integer.parseInt(in);
             var result = calculateResult(a, b, op);
             if (expectedNum == result) {
-                return true;
+                return Result.correct();
             } else {
-                System.out.println("Your answer: " + expectedNum
-                        + "is wrong ;(. Correct answer was " + result);
-                return false;
+                return Result.wrong(expectedNum, result);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-            return false;
+            return Result.noAnswer();
         }
     }
 
@@ -64,7 +62,7 @@ public final class CaclGame extends Game {
 
     private Operator getRandomOperator() {
         var operatorIndex = (int) ((Math.random() * 2) + 1);
-        Operator operator = null;
+        Operator operator;
         switch (operatorIndex) {
             case 0:
                 operator = Operator.PLUS;

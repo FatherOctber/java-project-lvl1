@@ -44,10 +44,11 @@ public class App {
                     var game = games.get(gameNumber);
                     if (game != null) {
                         int retCode = game.start();
-                        if (retCode != 0) {
+                        if (retCode == 0) {
+                            System.out.println("Congratulations!");
+                        } else {
                             System.out.println("Game over!");
                         }
-                        System.out.println("Congratulations!");
                     } else {
                         throw new IllegalArgumentException("The game"
                                 + " with number "
@@ -68,7 +69,8 @@ public class App {
         var launcher = new Launcher(Arrays.asList(
                 new GreetingGame(),
                 new EvenGame(),
-                new CaclGame()
+                new CaclGame(),
+                new GCDGame()
         ));
         launcher.showMenu();
     }

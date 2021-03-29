@@ -6,9 +6,9 @@ public final class GreetingGame extends Game {
     }
 
     @Override
-    protected boolean round() {
+    protected Result round() {
         greeting();
-        return false;
+        return Result.noAnswer();
     }
 
     private void greeting() {
