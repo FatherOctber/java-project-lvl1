@@ -6,6 +6,7 @@ import hexlet.code.games.EvenGame;
 import hexlet.code.games.GCDGame;
 import hexlet.code.games.GreetingGame;
 import hexlet.code.games.Progression;
+import hexlet.code.games.Prime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -77,7 +78,8 @@ public class App {
                 new EvenGame(),
                 new CaclGame(),
                 new GCDGame(),
-                new Progression()
+                new Progression(),
+                new Prime()
         ));
         launcher.showMenu();
     }
