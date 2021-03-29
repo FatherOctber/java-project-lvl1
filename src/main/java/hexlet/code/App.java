@@ -50,10 +50,7 @@ public class App {
                     }
                     var game = games.get(gameNumber);
                     if (game != null) {
-                        int retCode = game.start();
-                        if (retCode == 0) {
-                            System.out.println("Congratulations!");
-                        }
+                        game.start();
                         System.exit(0);
                     } else {
                         throw new IllegalArgumentException("The game"

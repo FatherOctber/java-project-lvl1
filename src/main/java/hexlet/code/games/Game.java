@@ -46,7 +46,7 @@ public abstract class Game {
     public final int start() {
         var winCount = 0;
         int winThreshold = 3;
-        greeting();
+        var name = greeting();
         while (winCount < winThreshold) {
             var win = round();
             switch (win.roundStatus) {
@@ -58,11 +58,14 @@ public abstract class Game {
                     System.out.println("Your answer: " + win.getExpected()
                             + " is wrong ;(. Correct answer was "
                             + win.getActual());
+                    System.out.println("Let's try again, " + name + "!");
                     return 1;
                 default:
+                    System.out.println("Let's try again, " + name + "!");
                     return 1;
             }
         }
+        System.out.println("Congratulations, " + name + "!");
         return 0;
     }
 
@@ -70,10 +73,11 @@ public abstract class Game {
         return getRandomNumber(100);
     }
 
-    protected final void greeting() {
+    protected final String greeting() {
         System.out.println("Welcome to the Brain Games!");
         String name = Cli.input("May I have your name? ");
         System.out.println("Hello, " + name + "!");
+        return name;
     }
 
     protected final int getRandomNumber(final int topBorder) {
