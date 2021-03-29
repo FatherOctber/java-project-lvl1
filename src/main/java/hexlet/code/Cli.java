@@ -2,13 +2,30 @@ package hexlet.code;
 
 import java.util.Scanner;
 
-public class Cli {
+public final class Cli implements Game {
+    private static final Scanner IN = new Scanner(System.in);
 
-    public static void greeting() {
-        Scanner in = new Scanner(System.in);
-        System.out.print("May I have your name? ");
-        String name = in.nextLine();
+    protected void finalize() throws Throwable {
+        super.finalize();
+        IN.close();
+    }
+
+    public String name() {
+        return "Greet";
+    }
+
+    public int start() {
+        greeting();
+        return 0;
+    }
+
+    private void greeting() {
+        String name = input("May I have your name? ");
         System.out.println("Hello, " + name + "!");
-        in.close();
+    }
+
+    public static String input(final String welcomeMsg) {
+        System.out.print(welcomeMsg);
+        return IN.nextLine();
     }
 }
