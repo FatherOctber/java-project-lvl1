@@ -5,6 +5,7 @@ import hexlet.code.Cli;
 import java.math.BigInteger;
 
 public final class Prime extends Game {
+    private static final int PRIME_CERTAINTY = 100;
 
     @Override
     public String name() {
@@ -18,7 +19,8 @@ public final class Prime extends Game {
                 + " Otherwise answer 'no'.");
         System.out.println("Question: " + number);
         var answer = Cli.input("Your answer: ");
-        var prime = BigInteger.valueOf(number).isProbablePrime(100);
+        var prime = BigInteger.valueOf(number)
+                .isProbablePrime(PRIME_CERTAINTY);
         switch (answer) {
             case "yes":
                 if (prime) {

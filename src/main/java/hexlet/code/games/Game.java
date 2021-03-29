@@ -3,6 +3,8 @@ package hexlet.code.games;
 import hexlet.code.Cli;
 
 public abstract class Game {
+    private static final int WIN_THRESHOLD = 3;
+    private static final int RANDOM_TOP_BORDER = 100;
     static final class Result<A, B> {
         private A expected;
         private B actual;
@@ -45,9 +47,8 @@ public abstract class Game {
 
     public final int start() {
         var winCount = 0;
-        int winThreshold = 3;
         var name = greeting();
-        while (winCount < winThreshold) {
+        while (winCount < WIN_THRESHOLD) {
             var win = round();
             switch (win.roundStatus) {
                 case 0:
@@ -70,7 +71,7 @@ public abstract class Game {
     }
 
     protected final int getRandomNumber() {
-        return getRandomNumber(100);
+        return getRandomNumber(RANDOM_TOP_BORDER);
     }
 
     protected final String greeting() {

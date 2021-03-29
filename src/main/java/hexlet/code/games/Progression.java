@@ -16,9 +16,10 @@ public final class Progression extends Game {
     @Override
     protected Result round() {
         var firstNumber = getRandomNumber();
-        var step = getRandomNumber(10);
+        final var topBorder = 10;
+        var step = getRandomNumber(topBorder);
         var seq = generateSequence(firstNumber, step);
-        var hiddenPosition = getRandomNumber(10) - 1;
+        var hiddenPosition = getRandomNumber(topBorder) - 1;
         System.out.println("What number is missing in the progression?");
         System.out.print("Question:");
         for (int i = 0; i < seq.size(); i++) {
