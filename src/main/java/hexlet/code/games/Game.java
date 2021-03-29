@@ -1,4 +1,4 @@
-package hexlet.code;
+package hexlet.code.games;
 
 public abstract class Game {
     static final class Result<A, B> {
@@ -64,6 +64,10 @@ public abstract class Game {
     }
 
     protected final int getRandomNumber() {
-        return (int) ((Math.random() * 99) + 1);
+        return getRandomNumber(100);
+    }
+
+    protected final int getRandomNumber(final int topBorder) {
+        return (int) ((Math.random() * topBorder - 1) + 1);
     }
 }

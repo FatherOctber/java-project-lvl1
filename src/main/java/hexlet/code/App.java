@@ -1,5 +1,11 @@
 package hexlet.code;
 
+import hexlet.code.games.CaclGame;
+import hexlet.code.games.Game;
+import hexlet.code.games.EvenGame;
+import hexlet.code.games.GCDGame;
+import hexlet.code.games.GreetingGame;
+import hexlet.code.games.Progression;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +76,8 @@ public class App {
                 new GreetingGame(),
                 new EvenGame(),
                 new CaclGame(),
-                new GCDGame()
+                new GCDGame(),
+                new Progression()
         ));
         launcher.showMenu();
     }
