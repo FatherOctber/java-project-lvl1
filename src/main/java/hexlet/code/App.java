@@ -66,7 +66,7 @@ public class App {
 
     public static void main(final String[] args) {
         System.out.println("Welcome to the Brain Games!");
-        var launcher = new Launcher(Arrays.asList(new Cli(), new EvenGame()));
+        var launcher = new Launcher(Arrays.asList(new GreetingGame(), new EvenGame()));
         launcher.showMenu();
     }
 }
