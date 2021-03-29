@@ -53,8 +53,6 @@ public class App {
                         int retCode = game.start();
                         if (retCode == 0) {
                             System.out.println("Congratulations!");
-                        } else {
-                            System.out.println("Game over!");
                         }
                     } else {
                         throw new IllegalArgumentException("The game"
