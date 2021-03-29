@@ -46,7 +46,6 @@ public class App {
                         int retCode = game.start();
                         if (retCode != 0) {
                             System.out.println("Game over!");
-                            System.exit(0);
                         }
                         System.out.println("Congratulations!");
                     } else {
@@ -66,7 +65,11 @@ public class App {
 
     public static void main(final String[] args) {
         System.out.println("Welcome to the Brain Games!");
-        var launcher = new Launcher(Arrays.asList(new GreetingGame(), new EvenGame()));
+        var launcher = new Launcher(Arrays.asList(
+                new GreetingGame(),
+                new EvenGame(),
+                new CaclGame()
+        ));
         launcher.showMenu();
     }
 }

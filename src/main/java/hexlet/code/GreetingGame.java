@@ -1,13 +1,14 @@
 package hexlet.code;
 
-public class GreetingGame implements Game {
+public final class GreetingGame extends Game {
     public String name() {
         return "Greet";
     }
 
-    public int start() {
+    @Override
+    protected boolean round() {
         greeting();
-        return 0;
+        return false;
     }
 
     private void greeting() {
