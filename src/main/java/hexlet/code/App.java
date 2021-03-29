@@ -54,6 +54,7 @@ public class App {
                         if (retCode == 0) {
                             System.out.println("Congratulations!");
                         }
+                        System.exit(0);
                     } else {
                         throw new IllegalArgumentException("The game"
                                 + " with number "
