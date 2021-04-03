@@ -12,6 +12,7 @@ import java.util.function.Supplier;
 public class Engine {
     private static final int WIN_THRESHOLD = 3;
     private static final int RANDOM_TOP_BORDER = 100;
+    private static final int RANDOM_BOTTOM_BORDER = 1;
     private static final int SEQ_LEN = 10;
 
     public static int start() {
@@ -119,7 +120,7 @@ public class Engine {
         final var a = getRandomNumber();
         final var b = getRandomNumber();
         final int opBorder = 3;
-        final var op = getRandomNumber(opBorder);
+        final var op = getRandomNumber(RANDOM_BOTTOM_BORDER, opBorder);
         String statement = a + " + " + b;
         switch (op) {
             case 0:
@@ -147,13 +148,14 @@ public class Engine {
     private static String prepareToProgressionGame() {
         int[] sequence = new int[SEQ_LEN];
         final int stepBorder = 10;
-        final var step = getRandomNumber(stepBorder);
+        final var step = getRandomNumber(RANDOM_BOTTOM_BORDER, stepBorder);
         for (int i = 0, currentNumber = getRandomNumber();
              i < SEQ_LEN;
              i++, currentNumber = currentNumber + step) {
             sequence[i] = currentNumber;
         }
-        final var hidden = getRandomNumber(SEQ_LEN);
+        final int bottom = 1;
+        final var hidden = getRandomNumber(bottom, SEQ_LEN - 2);
         String sequenceStr = "";
         for (int i = 0; i < sequence.length; i++, sequenceStr += " ") {
             if (i == hidden) {
@@ -166,10 +168,10 @@ public class Engine {
     }
 
     private static int getRandomNumber() {
-        return getRandomNumber(RANDOM_TOP_BORDER);
+        return getRandomNumber(RANDOM_BOTTOM_BORDER, RANDOM_TOP_BORDER);
     }
 
-    private static int getRandomNumber(final int topBorder) {
-        return (int) ((Math.random() * topBorder - 1) + 1);
+    private static int getRandomNumber(final int bottom, final int top) {
+        return (int) ((Math.random() * ((top - bottom) + 1)) + 1);
     }
 }
