@@ -101,7 +101,7 @@ public class Engine {
                         + " is wrong ;(. Correct answer was "
                         + gameResult);
                 System.out.println("Let's try again, " + name + "!");
-                return 1;
+                return 0;
             }
         }
         System.out.println("Congratulations, " + name + "!");
