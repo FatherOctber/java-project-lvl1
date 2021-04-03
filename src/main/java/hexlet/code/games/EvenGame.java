@@ -1,35 +1,18 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import java.util.function.Function;
 
-public final class EvenGame extends Game {
-    @Override
-    public String name() {
-        return "Even";
-    }
+public final class EvenGame {
+    public static final String NAME = "Even";
+    public static final String GAME_CONDITION = "Answer 'yes' if number even"
+            + " otherwise answer 'no'.";
 
-    @Override
-    protected Result round() {
-        var number = getRandomNumber();
-        System.out.println("Answer 'yes' if number even"
-                + " otherwise answer 'no'.");
-        System.out.println("Question: " + number);
-        var answer = Cli.input("Your answer: ");
-        switch (answer) {
-            case "yes":
-                if (number % 2 == 0) {
-                    return Result.correct();
-                } else {
-                    return Result.wrong("yes", "no");
-                }
-            case "no":
-                if (number % 2 != 0) {
-                    return Result.correct();
-                } else {
-                    return Result.wrong("no", "yes");
-                }
-            default:
-                return Result.wrong("yes or no", answer);
+    public static final Function<Integer, String> EVEN
+            = (number) -> {
+        if (number % 2 == 0) {
+            return "yes";
+        } else {
+            return "no";
         }
-    }
+    };
 }

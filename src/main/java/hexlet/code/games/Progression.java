@@ -1,58 +1,49 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import java.util.function.Function;
 
-import java.util.ArrayList;
-import java.util.List;
+public final class Progression {
+    public static final String NAME = "Progression";
+    public static final String GAME_CONDITION
+            = "What number is missing in the progression?";
 
-public final class Progression extends Game {
-    private static final int SEQ_LEN = 10;
-
-    @Override
-    public String name() {
-        return "Progression";
-    }
-
-    @Override
-    protected Result round() {
-        var firstNumber = getRandomNumber();
-        final var topBorder = 10;
-        var step = getRandomNumber(topBorder);
-        var seq = generateSequence(firstNumber, step);
-        var hiddenPosition = getRandomNumber(topBorder) - 1;
-        System.out.println("What number is missing in the progression?");
-        System.out.print("Question:");
-        for (int i = 0; i < seq.size(); i++) {
-            if (i == hiddenPosition) {
-                System.out.print(" ..");
-            } else {
-                System.out.print(" " + seq.get(i));
+    public static final Function<
+            String,
+            Integer> MISSING = (progressionWithMissedNumber) -> {
+        String[] parsed = progressionWithMissedNumber.split(" ");
+        int[] sourceProgression = new int[parsed.length - 1];
+        int j = 0;
+        for (var number : parsed) {
+            var num = number.trim();
+            if (!num.equals("..")) {
+                sourceProgression[j] = Integer.parseInt(num);
+                j++;
             }
         }
-        System.out.println();
-        try {
-            var in = Cli.input("Your answer: ");
-            var expectedNum = Integer.parseInt(in);
-            var actual = seq.get(hiddenPosition);
-            if (actual == expectedNum) {
-                return Result.correct();
-            } else {
-                return Result.wrong(expectedNum, actual);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return Result.noAnswer();
-        }
-    }
+        int d = (sourceProgression[sourceProgression.length - 1]
+                - sourceProgression[0]) / sourceProgression.length;
+        int low = 0;
+        int high = sourceProgression.length - 1;
+        while (low < high) {
+            int mid = low + (high - low) / 2;
 
-    public static List<Integer> generateSequence(final int start,
-                                                 final int step) {
-        var sequence = new ArrayList<Integer>();
-        for (int i = 0, currentNumber = start;
-             i < SEQ_LEN;
-             i++, currentNumber = currentNumber + step) {
-            sequence.add(currentNumber);
+            if (sourceProgression[mid + 1] - sourceProgression[mid] != d) {
+                return sourceProgression[mid] + d;
+            }
+
+            if (mid > 0
+                    && sourceProgression[mid]
+                    - sourceProgression[mid - 1] != d) {
+                return sourceProgression[mid - 1] + d;
+            }
+
+            if (sourceProgression[mid] == sourceProgression[0] + mid * d) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
         }
-        return sequence;
-    }
+
+        return Integer.MIN_VALUE;
+    };
 }
